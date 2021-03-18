@@ -1,0 +1,9 @@
+App\Entity\Attendee:
+    attendee_1:
+        __construct: [ '86f61129-5409-4764-a0a6-6f77422ee768', 'Ana', 'Raro', 'araro@eos-uptrade.de' ]
+    attendee_2:
+        __construct: [ 'e914627d-c795-41e1-99e7-83fc7e359537', 'Marcos', 'Rezende', 'mrezende@eos-uptrade.de' ]
+    attendee_3:
+        __construct: [ '1ff59ed9-6941-402b-bbe9-63299cca1d66', 'Bernard', 'Bednarek', 'bbednarek@eos-uptrade.de' ]
+    attendee_4:
+        __construct: [ 'b901c47a-ca57-4a45-8cc7-19657d328a8b', 'Jan', 'Schädlich', 'jschaedlich@eos-uptrade.de' ]
