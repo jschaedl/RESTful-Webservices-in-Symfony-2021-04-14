@@ -6,6 +6,7 @@ namespace App\Serializer;
 
 use App\Entity\Attendee;
 use App\Entity\Workshop;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\Normalizer\ContextAwareNormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
@@ -13,7 +14,8 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 final class WorkshopNormalizer implements ContextAwareNormalizerInterface
 {
     public function __construct(
-        private ObjectNormalizer $normalizer
+        private ObjectNormalizer $normalizer,
+        private UrlGeneratorInterface $urlGenerator,
     ) {
     }
 
@@ -48,6 +50,12 @@ final class WorkshopNormalizer implements ContextAwareNormalizerInterface
 
         if (\is_array($data)) {
             $data['workshop_date'] = $object->getWorkshopDate()->format('Y-m-d');
+
+            $data['_links']['self']['href'] = $this->urlGenerator->generate('read_workshop', [
+                'identifier' => $object->getIdentifier(),
+            ]);
+
+            $data['_links']['collection']['href'] = $this->urlGenerator->generate('list_workshop');
         }
 
         return $data;
