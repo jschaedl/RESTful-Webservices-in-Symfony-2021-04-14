@@ -11,7 +11,7 @@ class ListControllerTest extends ApiTestCase
     public function test_it_should_list_all_workshops(): void
     {
         $this->loadFixtures([
-            __DIR__.'/fixtures/list_workshop.yaml',
+            __DIR__.'/fixtures/list_workshops.yaml',
         ]);
 
         $this->browser->request('GET', '/workshops');
