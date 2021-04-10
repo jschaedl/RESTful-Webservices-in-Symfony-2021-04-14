@@ -8,12 +8,14 @@ use App\Entity\Attendee;
 use App\Repository\AttendeeRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
 
 #[Route('/attendees', name: 'list_attendee', methods: ['GET'])]
 final class ListController
 {
     public function __construct(
-        private AttendeeRepository $attendeeRepository
+        private AttendeeRepository $attendeeRepository,
+        private SerializerInterface $serializer,
     ) {
     }
 
@@ -21,12 +23,9 @@ final class ListController
     {
         $allAttendees = $this->attendeeRepository->findAll();
 
-        $allAttendeesAsArray = array_map(
-            static fn (Attendee $attendee) => $attendee->toArray(),
-            $allAttendees
-        );
+        $serializedAttendees = $this->serializer->serialize($allAttendees, 'json');
 
-        return new Response(json_encode($allAttendeesAsArray), Response::HTTP_OK, [
+        return new Response($serializedAttendees, Response::HTTP_OK, [
             'Content-Type' => 'application/json',
         ]);
     }

@@ -1,8 +1,9 @@
 [
     {
-        "identifier": "da05250a-0af5-40ed-a546-a36db383e2cc",
+        "identifier": "b901c47a-ca57-4a45-8cc7-19657d328a8b",
         "firstname": "Jan",
         "lastname": "Sch\u00e4dlich",
-        "email": "jschaedlich@eos-uptrade.de"
+        "email": "jschaedlich@eos-uptrade.de",
+        "workshops": []
     }
 ]

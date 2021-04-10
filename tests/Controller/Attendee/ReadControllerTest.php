@@ -11,10 +11,10 @@ class ReadControllerTest extends ApiTestCase
     public function test_it_should_requested_attendee(): void
     {
         $this->loadFixtures([
-            __DIR__ . '/fixtures/read_attendee.yaml',
+            __DIR__.'/fixtures/read_attendee.yaml',
         ]);
 
-        $this->browser->request('GET', '/attendees/470eefeb-6847-4098-9b6c-14be8e09a82e');
+        $this->browser->request('GET', '/attendees/b901c47a-ca57-4a45-8cc7-19657d328a8b');
 
         static::assertResponseIsSuccessful();
 

@@ -23,3 +23,5 @@
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+/tests/Controller/Attendee/__snapshots__/
+/tests/Controller/Workshop/__snapshots__/
