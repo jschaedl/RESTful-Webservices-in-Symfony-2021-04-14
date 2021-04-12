@@ -36,10 +36,12 @@ class PaginatedController
             $request->attributes->get('_route')
         );
 
-        $serializedData = $this->serializer->serialize($paginatedCollection, 'json');
+        $format = str_replace('application/', '', $request->headers->get('Accept'));
+
+        $serializedData = $this->serializer->serialize($paginatedCollection, $format);
 
         return new Response($serializedData, Response::HTTP_OK, [
-            'Content-Type' => 'application/json',
+            'Content-Type' => $request->headers->get('Accept'),
         ]);
     }
 
