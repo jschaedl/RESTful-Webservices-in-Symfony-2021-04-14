@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Serializer;
 
 use App\Entity\Attendee;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\Normalizer\ContextAwareNormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
@@ -12,7 +13,8 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 final class AttendeeNormalizer implements ContextAwareNormalizerInterface
 {
     public function __construct(
-        private ObjectNormalizer $normalizer
+        private ObjectNormalizer $normalizer,
+        private UrlGeneratorInterface $urlGenerator
     ) {
     }
 
