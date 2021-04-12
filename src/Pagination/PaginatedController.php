@@ -52,7 +52,7 @@ class PaginatedController
     /**
      * @throws \Exception
      */
-    public function createPaginatedCollection(string $entityClass, int $page = 1, int $size = 10, string $routeName): PaginatedColletion
+    public function createPaginatedCollection(string $entityClass, int $page = 1, int $size = 10, string $routeName): PaginatedCollection
     {
         $repository = $this->entityManager->getRepository($entityClass);
         $query = $repository->createQueryBuilder('u')->getQuery();
@@ -66,7 +66,7 @@ class PaginatedController
             ->setFirstResult($size * ($page - 1))
             ->setMaxResults($size);
 
-        $paginatedCollection = new PaginatedColletion($paginator->getIterator(), $total);
+        $paginatedCollection = new PaginatedCollection($paginator->getIterator(), $total);
 
         $paginatedCollection->addLink('self', $this->urlGenerator->generate($routeName, [
             'page' => $page,
