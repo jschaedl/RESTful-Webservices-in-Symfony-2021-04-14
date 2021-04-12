@@ -14,22 +14,16 @@ use Symfony\Component\Serializer\SerializerInterface;
 class PaginatedController
 {
     protected string $paginatedEntity;
-    protected string $routeName;
 
     public function setPaginatedEntity(string $paginatedEntity): void
     {
         $this->paginatedEntity = $paginatedEntity;
     }
 
-    public function setRouteName(string $routeName): void
-    {
-        $this->routeName = $routeName;
-    }
-
     public function __construct(
         protected EntityManagerInterface $entityManager,
         protected SerializerInterface $serializer,
-        protected UrlGeneratorInterface $urlGenerator
+        protected UrlGeneratorInterface $urlGenerator,
     ) {
     }
 
@@ -39,7 +33,7 @@ class PaginatedController
             $this->paginatedEntity,
             $request->query->getInt('page', 1),
             $request->query->getInt('size', 10),
-            $this->routeName
+            $request->attributes->get('_route')
         );
 
         $serializedData = $this->serializer->serialize($paginatedCollection, 'json');
